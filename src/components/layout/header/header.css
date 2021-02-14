@@ -1,0 +1,12 @@
+/* ------------- header -------------*/
+#header {
+    position: relative;
+    margin-bottom: 40px;
+    background: #554131;
+}
+
+#header .brand-logo {
+    display: block;
+    margin: 0 auto;
+    width: 150px;
+}
