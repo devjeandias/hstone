@@ -1,0 +1,45 @@
+/* card */
+.card {
+    background: rgb(255 255 255 / 0.5);
+    border-radius: 10px;
+    position: relative;
+    max-width: 240px;
+    padding: 20px;
+    width: 100%;
+}
+
+.card-img {
+    padding: 0;
+    height: 200px;
+    margin: -20px -20px 0;
+    background: chocolate;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.card-name {
+    text-transform: uppercase;
+}
+
+.card-name,
+.card-description {
+    text-align: center;
+}
+
+.card-attack,
+.card-defense {
+    display: block;
+    font-weight: 700;
+}
+
+.card-attack {
+    color: blue;
+}
+
+.card-defense {
+    color: red;
+}
+
+.card-type,
+.card-class {
+    display: none;
+}
