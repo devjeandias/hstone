@@ -2,6 +2,7 @@ import './app.css'
 import React, { Component } from 'react'
 import Card from './layout/cards/card'
 import Header from './layout/header/header'
+import AddCard from './layout/addCard/addCard'
 
 export default class App extends Component {
     render() {
@@ -11,8 +12,8 @@ export default class App extends Component {
 
                 <main id="main" className="main">
                     <div className="container">
+                        <AddCard />
                         <Card />
-                        <button className="addCard"></button>
                     </div>
                 </main>
 

@@ -1,0 +1,9 @@
+.addCard {
+    text-transform: uppercase;
+    background: #561513;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    padding: 10px 20px;
+    display: block;
+    color: #fff;
+}
