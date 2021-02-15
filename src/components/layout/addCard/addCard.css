@@ -1,8 +1,8 @@
 .addCard {
     text-transform: uppercase;
     background: #561513;
+    margin: 0 auto 40px;
     border-radius: 20px;
-    margin-bottom: 40px;
     padding: 10px 20px;
     display: block;
     color: #fff;
