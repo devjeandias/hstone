@@ -27,7 +27,7 @@ export default (props) => {
             case 'Paladino':
                 styleCard.backgroundImage= 'url('+paladino+')'
                 break;
-            case 'Qualquer':
+            default:
                 styleCard.backgroundImage= 'url('+qualquer+')'
                 break;
         }
@@ -36,7 +36,7 @@ export default (props) => {
     }
 
     return (
-        <div className="card" key={card.id} style={bgCard(card.class[0])}>
+        <div className="card" style={bgCard(card.class[0])}>
             <div className="wrap">
                 <h2 className="card-name">{card.name}</h2>
 
