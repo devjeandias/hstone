@@ -2,20 +2,75 @@
 .card {
     background: rgb(255 255 255 / 0.5);
     background-position: center;
-    padding: 250px 0px 0px;
     background-size: cover;
     border-radius: 10px;
     margin: 0 20px 30px;
     position: relative;
+    min-height: 400px;
     max-width: 240px;
     overflow: hidden;
+    padding: 0px;
     width: 100%;
 }
 
-.card .wrap {
+.card.caçador {
+    background-image: url('./img/cacador.png');
+}
+
+.card.druida {
+    background-image: url('./img/druida.png');
+}
+
+.card.paladino {
+    background-image: url('./img/paladino.png');
+}
+
+.card.mago {
+    background-image: url('./img/mago.png');
+}
+
+.card.qualquer {
+    background-image: url('./img/qualquer.png');
+}
+
+.card .actions {
+    position: absolute;
+    bottom: -35px;
+    width: 100%;
+}
+
+.card:hover .actions {
+    bottom: 0;
+}
+
+.card button {
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
     color: #fff;
+    width: 50%;
+}
+
+.card button:hover {
+    box-shadow: inset 0 0 10px 5px rgba(0,0,0, 0.2);
+}
+
+.card .delete {
+    background-color: rgb(200, 130, 0);
+}
+
+.card .edit {
+    background-color: rgb(180, 0, 0);
+}
+
+.card .wrap {
+    bottom: 0;
+    width: 100%;
+    color: #fff;
+    position: absolute;
     text-align: center;
-    padding: 10px 20px 20px;
+    padding: 20px 20px;
     background: rgba(0,0,0, 0.5);
     text-shadow: 0 2px 5px rgba(0,0,0, 0.7);
 }
@@ -42,4 +97,24 @@
 .card-defense {
     display: inline-block;
     margin: 0 10px;
+}
+
+.card textarea {
+    height: 80px;
+}
+
+.card label {
+    display: block;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.card textarea,
+.card select,
+.card input {
+    background: rgba(250,250,250, 0.8);
+    width: 100%;
+    border: none;
+    padding: 7px 10px;
+    margin-bottom: 10px;
 }

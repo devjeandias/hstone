@@ -1,60 +1,97 @@
-import React from 'react'
+import React, { Component, Fragment } from 'react'
 import './card.css'
+import SelectOptions from '../selectOptions/selectOptions'
 
-import cacador from './img/cacador.png'
-import druida from './img/druida.png'
-import paladino from './img/paladino.png'
-import mago from './img/mago.png'
-import qualquer from './img/qualquer.png'
+const cardType = ['Magia','Criatura']
+const cardClass = ['Mago','Paladino','Caçador','Druida','Qualquer']
 
-export default (props) => {
-    let card = props.card
-    
-    let bgCard = function(props) {
-        let styleCard = {}
-            styleCard.backgroundSize = "cover"
-
-        switch(props) {
-            case 'Mago':
-                styleCard.backgroundImage= 'url('+mago+')'
-                break;
-            case 'Druida':
-                styleCard.backgroundImage= 'url('+druida+')'
-                break;
-            case 'Caçador':
-                styleCard.backgroundImage= 'url('+cacador+')'
-                break;
-            case 'Paladino':
-                styleCard.backgroundImage= 'url('+paladino+')'
-                break;
-            default:
-                styleCard.backgroundImage= 'url('+qualquer+')'
-                break;
-        }
-
-        return styleCard
+export default class Card extends Component {
+    objState = {
+        editing: false,
+        id: this.props.card.id,
+        name: this.props.card.name,
+        class: this.props.card.class[0],
+        type: this.props.card.type[0],
+        attack: this.props.card.attack,
+        defense: this.props.card.defense,
+        description: this.props.card.description
     }
 
-    return (
-        <div className="card" style={bgCard(card.class[0])}>
-            <div className="wrap">
-                <h2 className="card-name">{card.name}</h2>
+    state = this.objState
 
-                <div className="card-description">
-                    <p>{card.description}</p>
+    activeEdit() {
+        this.setState({
+            editing: true
+        })
+    }
+    
+    discardEdit() {
+        this.setState( this.objState )
+    }
+
+    render() {
+        return (
+            <div className={"card "+this.state.class.toLowerCase()} >
+                <div className="wrap">
+                    {/* name */}
+                    {   
+                        this.state.editing ?
+                            <input type="text" value={ this.state.name }
+                                onChange={ e => this.setState({ name: e.target.value }) } />
+                        :   <h2 className="card-name">{this.state.name}</h2>
+                    }
+                         
+                    {/* description */}
+                    {
+                        this.state.editing ?
+                            <textarea value={this.state.description}
+                                onChange={ e => this.setState({ description: e.target.value }) } />
+                        :   <div className="card-description"><p>{this.state.description}</p></div>
+                    }
+
+                    {/* attack */}
+                    {   
+                        this.state.editing ?
+                            <label> Ataque
+                                <input type="number" min="0"  max="10" value={ this.state.attack }
+                                    onChange={ e => this.setState({ attack: e.target.value }) } />
+                            </label>
+                        :   <span className="card-attack">A <sup> {this.state.attack} </sup></span>
+                    }
+                    
+                    {/* defense */}
+                    {   
+                        this.state.editing ?
+                            <label> Defesa
+                                <input type="number" min="0"  max="10" value={ this.state.defense }
+                                    onChange={ e => this.setState({ defense: e.target.value }) } />
+                            </label>
+                        :   <span className="card-defense">D <sup> {this.state.defense} </sup></span>
+                    }
+    
+                    {/* type */}
+                    {
+                        this.state.editing ?
+                            <label> Tipo
+                                <SelectOptions selectData={cardType} actionChange={e =>  this.setState({ type: e.target.value })} />
+                            </label>
+                        : <span className="card-type" style={{display:"none" }}>{this.state.type}</span>
+                    }
+
+                    {/* class */}
+                    {
+                        this.state.editing ?
+                            <label> Class
+                                <SelectOptions selectData={cardClass} actionChange={e =>  this.setState({ class: e.target.value })} />
+                            </label>
+                        : <span className="card-class" style={{display:"none" }}>{this.state.class}</span>
+                    }
                 </div>
-
-                <span className="card-attack">A <sup> {card.attack} </sup></span>
-                <span className="card-defense">D <sup> {card.defense} </sup></span>
-
-                <span className="card-type" style={{display:"none" }}>{card.type[0]}</span>
-                <span className="card-class" style={{display:"none" }}>{card.class[0]}</span>
+    
+                <div className="actions">
+                    {this.state.editing ? <Fragment><button className="save">Salvar</button><button className="edit" onClick={() => this.discardEdit()}>descartar</button></Fragment> : <Fragment><button className="delete">Deletar</button><button className="edit" onClick={() => this.activeEdit()}>Editar</button></Fragment> }
+                </div>
             </div>
-
-            <div className="actions">
-                <button className="delete">Deletar</button>
-                <button className="edit">Editar</button>
-            </div>
-        </div>
-    )
+        )
+    }
 }
