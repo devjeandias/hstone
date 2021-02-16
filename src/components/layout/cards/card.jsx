@@ -29,6 +29,24 @@ export default class Card extends Component {
         this.setState( this.objState )
     }
 
+    saveEdit() {
+        this.setState({
+            editing: false
+        })
+
+        let dataCardSave = {
+            id: this.state.id,
+            name: this.state.name,
+            class: [this.state.class],
+            type: [this.state.type],
+            attack: this.state.attack,
+            defense: this.state.defense,
+            description: this.state.description
+        }
+
+        return dataCardSave
+    }
+
     render() {
         return (
             <div className={"card "+this.state.class.toLowerCase()} >
@@ -73,7 +91,7 @@ export default class Card extends Component {
                     {
                         this.state.editing ?
                             <label> Tipo
-                                <SelectOptions selectData={cardType} actionChange={e =>  this.setState({ type: e.target.value })} />
+                                <SelectOptions hasSelected={this.state.type} selectData={cardType} actionChange={e =>  this.setState({ type: e.target.value })} />
                             </label>
                         : <span className="card-type" style={{display:"none" }}>{this.state.type}</span>
                     }
@@ -81,15 +99,23 @@ export default class Card extends Component {
                     {/* class */}
                     {
                         this.state.editing ?
-                            <label> Class
-                                <SelectOptions selectData={cardClass} actionChange={e =>  this.setState({ class: e.target.value })} />
+                            <label>
+                                <SelectOptions hasSelected={this.state.class} selectData={cardClass} actionChange={e =>  this.setState({ class: e.target.value })} />
                             </label>
                         : <span className="card-class" style={{display:"none" }}>{this.state.class}</span>
                     }
                 </div>
     
                 <div className="actions">
-                    {this.state.editing ? <Fragment><button className="save">Salvar</button><button className="edit" onClick={() => this.discardEdit()}>descartar</button></Fragment> : <Fragment><button className="delete">Deletar</button><button className="edit" onClick={() => this.activeEdit()}>Editar</button></Fragment> }
+                    { this.state.editing ?
+                        <Fragment>
+                            <button className="save" onClick={() => this.props.onSave( this.saveEdit() ) }>Salvar</button>
+                            <button className="edit" onClick={() => this.discardEdit() }>descartar</button>
+                        </Fragment> :
+                        <Fragment>
+                            <button className="delete">Deletar</button>
+                            <button className="edit" onClick={() => this.activeEdit()}>Editar</button>
+                        </Fragment> }
                 </div>
             </div>
         )

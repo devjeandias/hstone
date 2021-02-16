@@ -4,7 +4,7 @@ import './search-results.css'
 
 export default (props) => {
     let searchResult = props.cards.map((val, ind) => {
-        return (<Card key={"card-"+val.id} card={ val } />)
+        return (<Card key={"card-"+val.id} card={ val } onSave={ props.onSaveEdit } />)
     })
 
     return(

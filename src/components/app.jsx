@@ -2,6 +2,7 @@ import './app.css'
 import React, { Component } from 'react'
 import SearchResults from './layout/search-results/search-results'
 import Header from './layout/header/header'
+// import Card from './layout/cards/card'
 import AddCard from './layout/addCard/addCard'
 import Form from './layout/form/form'
 import Subheader from './layout/subheader/subheader'
@@ -11,8 +12,19 @@ export default class App extends Component {
         searchResults: JSON.parse( localStorage.getItem('@heathstone/searchResults') )
     }
 
-    hasSearchResults = () => {
+    hasSearchResults() {
         return this.state.searchResults ? true : false
+    }
+
+    saveCardEdit = (data) => {
+        let cardEdit = this.state.searchResults
+
+        cardEdit.map( (v, k) => {
+            if(data.id === cardEdit[k].id) {
+                cardEdit[k] = data
+            }
+            return localStorage.setItem('@heathstone/searchResults', JSON.stringify(cardEdit))
+        })
     }
 
     render() {
@@ -22,7 +34,7 @@ export default class App extends Component {
                 <main id="main" className="main">
                     <Subheader totalCards={this.state.searchResults.lenght} />
                     <div className="container">
-                        { this.hasSearchResults() ? <SearchResults cards={ this.state.searchResults } /> : <Form /> }
+                        { this.hasSearchResults() ? <SearchResults cards={ this.state.searchResults } onSaveEdit={ this.saveCardEdit } /> : <Form /> }
                     </div>
                     <AddCard />
                 </main>
