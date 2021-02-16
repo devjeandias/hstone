@@ -1,0 +1,6 @@
+.search-results {
+    justify-content: space-around;
+    flex-wrap: wrap;
+    display: flex;
+    width: 100%;
+}

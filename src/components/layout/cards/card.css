@@ -1,28 +1,27 @@
 /* card */
 .card {
     background: rgb(255 255 255 / 0.5);
+    background-position: center;
+    padding: 250px 0px 0px;
+    background-size: cover;
     border-radius: 10px;
+    margin: 0 20px 30px;
     position: relative;
     max-width: 240px;
-    padding: 20px;
+    overflow: hidden;
     width: 100%;
 }
 
-.card-img {
-    padding: 0;
-    height: 200px;
-    margin: -20px -20px 0;
-    background: chocolate;
-    border-radius: 10px 10px 0px 0px;
+.card .wrap {
+    color: #fff;
+    text-align: center;
+    padding: 10px 20px 20px;
+    background: rgba(0,0,0, 0.5);
+    text-shadow: 0 2px 5px rgba(0,0,0, 0.7);
 }
 
 .card-name {
     text-transform: uppercase;
-}
-
-.card-name,
-.card-description {
-    text-align: center;
 }
 
 .card-attack,
@@ -32,14 +31,15 @@
 }
 
 .card-attack {
-    color: blue;
+    color: #edb825;
 }
 
 .card-defense {
-    color: red;
+    color: #edb825;
 }
 
-.card-type,
-.card-class {
-    /* display: none; */
+.card-attack,
+.card-defense {
+    display: inline-block;
+    margin: 0 10px;
 }
