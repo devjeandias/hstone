@@ -110,7 +110,7 @@ export default class Card extends Component {
                     { this.state.editing ?
                         <Fragment>
                             <button className="save" onClick={() => this.props.onSave( this.saveEdit() ) }>Salvar</button>
-                            <button className="edit" onClick={() => this.discardEdit() }>descartar</button>
+                            <button className="discard" onClick={() => this.discardEdit() }>descartar</button>
                         </Fragment> :
                         <Fragment>
                             <button className="delete">Deletar</button>

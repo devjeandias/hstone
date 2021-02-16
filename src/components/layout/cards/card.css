@@ -1,16 +1,75 @@
 /* card */
 .card {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     background: rgb(255 255 255 / 0.5);
     background-position: center;
-    background-size: cover;
+    background-size:  auto 100%;
     border-radius: 10px;
     margin: 0 20px 30px;
+    transition: all .5s;
     position: relative;
     min-height: 400px;
     max-width: 240px;
     overflow: hidden;
     padding: 0px;
     width: 100%;
+}
+
+.card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-size: auto 110%;
+    box-shadow: inner;
+}
+
+.card._addCard {
+    background: rgb(207, 207, 207);
+}
+
+.card._addCard .addNewCard {
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    height: 400px;
+    width: 100%;
+}
+
+.card._addCard .addNewCard span {
+    transform: scale(1);
+    text-align: center;
+    background: #fff;
+    border-radius: 50%;
+    line-height: 100px;
+    font-weight: bold;
+    font-size: 60px;
+    color: #666;
+    display: block;
+    height: 100px;
+    width: 100px;
+    transition: transform .5s;
+}
+
+.card._addCard .addNewCard:hover span {
+    transform: scale(1.5);
+}
+
+.card._preview {
+    background-color: rgba(0,0,0, 0.8);
+}
+
+.card._preview .preview {
+    background: rgba(0,0,0, 0.8);
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 3px;
+    position: absolute;
+    font-weight: bold;
+    padding: 8px;
+    font-size: 14px;
+    color: yellow;
+    width: 100%;
+    right: 0px;
+    top: 0px;
 }
 
 .card.caçador {
@@ -54,6 +113,7 @@
 
 .card button:hover {
     box-shadow: inset 0 0 10px 5px rgba(0,0,0, 0.2);
+    outline: none;
 }
 
 .card .delete {
@@ -61,6 +121,14 @@
 }
 
 .card .edit {
+    background-color: rgb(0, 165, 180);
+}
+
+.card .save {
+    background-color: rgb(126, 180, 0);
+}
+
+.card .discard {
     background-color: rgb(180, 0, 0);
 }
 
@@ -83,6 +151,11 @@
 .card-defense {
     display: block;
     font-weight: 700;
+}
+
+.card._preview .card-attack,
+.card._preview .card-defense {
+    margin-bottom: 20px;
 }
 
 .card-attack {

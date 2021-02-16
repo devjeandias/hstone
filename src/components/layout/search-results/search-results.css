@@ -1,6 +1,14 @@
 .search-results {
-    justify-content: space-around;
-    flex-wrap: wrap;
-    display: flex;
+    text-align: center;
     width: 100%;
+}
+
+@media screen and (min-width: 1180px) {
+    .search-results {
+        text-align: left;
+    }
+}
+
+.search-results .card {
+    display: inline-block;
 }

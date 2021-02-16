@@ -2,8 +2,6 @@ import './app.css'
 import React, { Component } from 'react'
 import SearchResults from './layout/search-results/search-results'
 import Header from './layout/header/header'
-// import Card from './layout/cards/card'
-import AddCard from './layout/addCard/addCard'
 import Form from './layout/form/form'
 import Subheader from './layout/subheader/subheader'
 
@@ -36,7 +34,6 @@ export default class App extends Component {
                     <div className="container">
                         { this.hasSearchResults() ? <SearchResults cards={ this.state.searchResults } onSaveEdit={ this.saveCardEdit } /> : <Form /> }
                     </div>
-                    <AddCard />
                 </main>
             </React.Fragment>
         )

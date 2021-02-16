@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from '../cards/card'
+import Form from '../cards/form'
 import './search-results.css'
 
 export default (props) => {
@@ -10,6 +11,7 @@ export default (props) => {
     return(
         <div className="search-results">
             {searchResult}
+            <Form />
         </div>
     )
 }
