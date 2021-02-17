@@ -51,6 +51,7 @@ export default class Card extends Component {
         return (
             <div className={"card "+this.state.class.toLowerCase()} >
                 <div className="wrap">
+                    <input type="hidden" valor={this.state.id} />
                     {/* name */}
                     {   
                         this.state.editing ?
@@ -113,8 +114,8 @@ export default class Card extends Component {
                             <button className="discard" onClick={() => this.discardEdit() }>descartar</button>
                         </Fragment> :
                         <Fragment>
-                            <button className="delete">Deletar</button>
-                            <button className="edit" onClick={() => this.activeEdit()}>Editar</button>
+                            <button className="delete" onClick={() => this.props.onDelete( this.state.id, this.state.name ) }>Deletar</button>
+                            <button className="edit" onClick={() => this.activeEdit() }>Editar</button>
                         </Fragment> }
                 </div>
             </div>

@@ -7,7 +7,7 @@ export default (props) => {
     return(
         <div className="search-results">
             {props.cards.map((val) => {
-                return (<Card key={"card-"+val.id} card={ val } onSave={ props.onSaveEdit } />)
+                return (<Card key={"card-"+val.id} card={ val } onSave={ props.onSaveEdit } onDelete={ props.onDelCard } />)
             })}
             <Form key={Math.random()} onSave={ props.onSaveNewCard } />
         </div>

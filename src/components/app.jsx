@@ -5,19 +5,19 @@ import Header from './layout/header/header'
 import Subheader from './layout/subheader/subheader'
 
 export default class App extends Component {
+    
     state = {
         searchResults: JSON.parse( localStorage.getItem('@heathstone/searchResults') )
     }
 
-    saveCardEdit = (data) => {
-        let cardEdit = this.state.searchResults
+    setData = (data) => {
+        return localStorage.setItem('@heathstone/searchResults', data )
+    }
 
-        cardEdit.map( (v, k) => {
-            if(data.id === cardEdit[k].id) {
-                cardEdit[k] = data
-            }
-            return localStorage.setItem('@heathstone/searchResults', JSON.stringify(cardEdit))
-        })
+    removeElement(a, index) {
+        let newArray = [...a]
+        newArray.splice(index, 1)
+        return newArray;
     }
 
     saveNewCard = (data) => {
@@ -28,7 +28,37 @@ export default class App extends Component {
             searchResults: this.state.searchResults
         })
 
-        return localStorage.setItem('@heathstone/searchResults', JSON.stringify(this.state.searchResults))
+        return this.setData( JSON.stringify(this.state.searchResults) )
+    }
+
+    saveCardEdit = (data) => {
+        let cardEdit = this.state.searchResults
+
+        cardEdit.map( (v, k) => {
+            if(data.id === cardEdit[k].id) {
+                cardEdit[k] = data
+            }
+            return this.setData( JSON.stringify(cardEdit) )
+        })
+    }
+
+    delCard = ( id, name ) => {
+
+        let cards = this.state.searchResults,
+            alertDel = confirm("Deletar "+name+"?")
+
+        if(alertDel) {
+            cards.map( (v, k) => {
+                if( id === v.id ) {
+                    cards = this.removeElement(cards, k)
+                }
+                return this.setData( JSON.stringify(cards) )
+            })
+    
+            this.setState({
+                searchResults: cards
+            })
+        }
     }
 
     render() {
@@ -42,6 +72,7 @@ export default class App extends Component {
                             cards={ this.state.searchResults }
                             onSaveNewCard={ this.saveNewCard }
                             onSaveEdit={ this.saveCardEdit }
+                            onDelCard={ this.delCard }
                         />
                     </div>
                 </main>
