@@ -66,7 +66,7 @@ export default class App extends Component {
             <React.Fragment>
                 <Header />
                 <main id="main" className="main">
-                    <Subheader totalCards={this.state.searchResults.lenght} />
+                    <Subheader totalCards={ this.state.searchResults.length } />
                     <div className="container">
                         <SearchResults
                             cards={ this.state.searchResults }

@@ -1,11 +1,13 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import './subheader.css'
 
-export default function() {
+export default function(props) {
     return(
         <div className="main--header container">
             <h1 className="title">Cartas</h1>
-            <span className="subtitle">Total de cartas: 30</span>
+            <span className="subtitle">
+                { props.totalCards > 0 ? "Total de cartas:"+props.totalCards: "Nenhuma carta encontrada " }
+            </span>
         </div>
     )
 }
