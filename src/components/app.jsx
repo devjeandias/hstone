@@ -2,16 +2,11 @@ import './app.css'
 import React, { Component } from 'react'
 import SearchResults from './layout/search-results/search-results'
 import Header from './layout/header/header'
-import Form from './layout/form/form'
 import Subheader from './layout/subheader/subheader'
 
 export default class App extends Component {
     state = {
         searchResults: JSON.parse( localStorage.getItem('@heathstone/searchResults') )
-    }
-
-    hasSearchResults() {
-        return this.state.searchResults ? true : false
     }
 
     saveCardEdit = (data) => {
@@ -25,6 +20,17 @@ export default class App extends Component {
         })
     }
 
+    saveNewCard = (data) => {
+        data.id = Math.floor(Math.random() * 999999)
+        this.state.searchResults.push(data)
+
+        this.setState({
+            searchResults: this.state.searchResults
+        })
+
+        return localStorage.setItem('@heathstone/searchResults', JSON.stringify(this.state.searchResults))
+    }
+
     render() {
         return(
             <React.Fragment>
@@ -32,7 +38,11 @@ export default class App extends Component {
                 <main id="main" className="main">
                     <Subheader totalCards={this.state.searchResults.lenght} />
                     <div className="container">
-                        { this.hasSearchResults() ? <SearchResults cards={ this.state.searchResults } onSaveEdit={ this.saveCardEdit } /> : <Form /> }
+                        <SearchResults
+                            cards={ this.state.searchResults }
+                            onSaveNewCard={ this.saveNewCard }
+                            onSaveEdit={ this.saveCardEdit }
+                        />
                     </div>
                 </main>
             </React.Fragment>

@@ -5,5 +5,5 @@ export default (props) => {
         return <option key={k} value={v}>{v}</option>
     })
 
-    return <select name={props.name} id={props.id} onChange={props.actionChange} >{selectItens}</select>
+    return <select name={props.name} id={props.id} onChange={props.actionChange} ><option>Selecione</option>{selectItens}</select>
 }

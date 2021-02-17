@@ -27,11 +27,17 @@
 
 .card._addCard .addNewCard {
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     cursor: pointer;
     display: flex;
     height: 400px;
     width: 100%;
+}
+
+.card._addCard .addNewCard p {
+    text-transform: uppercase;
+    font-weight: 700;
 }
 
 .card._addCard .addNewCard span {
@@ -50,7 +56,7 @@
 }
 
 .card._addCard .addNewCard:hover span {
-    transform: scale(1.5);
+    transform: scale(1.2);
 }
 
 .card._preview {
@@ -96,6 +102,7 @@
     position: absolute;
     bottom: -35px;
     width: 100%;
+    transition: bottom .3s;
 }
 
 .card:hover .actions {
@@ -138,7 +145,7 @@
     color: #fff;
     position: absolute;
     text-align: center;
-    padding: 20px 20px;
+    padding: 20px 20px 40px;
     background: rgba(0,0,0, 0.5);
     text-shadow: 0 2px 5px rgba(0,0,0, 0.7);
 }
@@ -177,9 +184,18 @@
 }
 
 .card label {
-    display: block;
     font-size: 14px;
     line-height: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card label input,
+.card label select {
+    max-width: 50%;
+    margin-left: 5px;
+    text-align: center;
 }
 
 .card textarea,

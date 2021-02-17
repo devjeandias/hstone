@@ -54,7 +54,7 @@ export default class Card extends Component {
                     {/* name */}
                     {   
                         this.state.editing ?
-                            <input type="text" value={ this.state.name }
+                            <input type="text" placeholder="Nome" value={ this.state.name }
                                 onChange={ e => this.setState({ name: e.target.value }) } />
                         :   <h2 className="card-name">{this.state.name}</h2>
                     }
@@ -62,7 +62,7 @@ export default class Card extends Component {
                     {/* description */}
                     {
                         this.state.editing ?
-                            <textarea value={this.state.description}
+                            <textarea placeholder="Descrição" value={this.state.description}
                                 onChange={ e => this.setState({ description: e.target.value }) } />
                         :   <div className="card-description"><p>{this.state.description}</p></div>
                     }
@@ -99,7 +99,7 @@ export default class Card extends Component {
                     {/* class */}
                     {
                         this.state.editing ?
-                            <label>
+                            <label> Classe
                                 <SelectOptions hasSelected={this.state.class} selectData={cardClass} actionChange={e =>  this.setState({ class: e.target.value })} />
                             </label>
                         : <span className="card-class" style={{display:"none" }}>{this.state.class}</span>

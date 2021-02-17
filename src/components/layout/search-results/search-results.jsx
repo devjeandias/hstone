@@ -4,14 +4,12 @@ import Form from '../cards/form'
 import './search-results.css'
 
 export default (props) => {
-    let searchResult = props.cards.map((val, ind) => {
-        return (<Card key={"card-"+val.id} card={ val } onSave={ props.onSaveEdit } />)
-    })
-
     return(
         <div className="search-results">
-            {searchResult}
-            <Form />
+            {props.cards.map((val) => {
+                return (<Card key={"card-"+val.id} card={ val } onSave={ props.onSaveEdit } />)
+            })}
+            <Form key={Math.random()} onSave={ props.onSaveNewCard } />
         </div>
     )
 }
