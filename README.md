@@ -1,5 +1,5 @@
-# comandos para executar o projeto
-### utilizei Create React App.
+# Comandos para executar o projeto
+### Utilizei Create React App.
 
 npm install
 <br />
