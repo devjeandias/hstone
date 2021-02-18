@@ -1,13 +1,13 @@
 import './app.css'
 import React, { Component } from 'react'
+import FirstData from './data/firstData'
 import SearchResults from './layout/search-results/search-results'
 import Header from './layout/header/header'
 import Subheader from './layout/subheader/subheader'
 
 export default class App extends Component {
-    
     state = {
-        searchResults: JSON.parse( localStorage.getItem('@heathstone/searchResults') ),
+        searchResults: JSON.parse( localStorage.getItem('@heathstone/searchResults') ) || [],
         thisSearchResults: "",
         hasSearch: false
     }
@@ -88,6 +88,7 @@ export default class App extends Component {
     }
 
     componentDidMount() {
+        FirstData()
         this.searchUrl()
     }
 
