@@ -7,7 +7,9 @@ import Subheader from './layout/subheader/subheader'
 export default class App extends Component {
     
     state = {
-        searchResults: JSON.parse( localStorage.getItem('@heathstone/searchResults') )
+        searchResults: JSON.parse( localStorage.getItem('@heathstone/searchResults') ),
+        thisSearchResults: "",
+        hasSearch: false
     }
 
     setData = (data) => {
@@ -61,15 +63,43 @@ export default class App extends Component {
         }
     }
 
+    searchUrl = () => {
+        let urlSerch = window.location.search 
+        if( urlSerch ) {
+            urlSerch = urlSerch.split('=')[1].replace(/\+/g, " ")
+            this.searchCard(urlSerch)
+        }
+    }
+
+    searchCard = (search) => {
+        search = search.toLowerCase()
+        const searchResults = this.state.searchResults.filter(item => item.id.toString().indexOf(search) > -1 || item.name.toLowerCase().indexOf(search) > -1 || item.class[0].toLowerCase().indexOf(search) > -1 || item.type[0].toLowerCase().indexOf(search) > -1 )
+
+        this.setState({
+            thisSearchResults: searchResults,
+            hasSearch: true
+        })
+    }
+
+    clearSearchCard = () => {
+        this.setState({
+            hasSearch: false
+        })        
+    }
+
+    componentDidMount() {
+        this.searchUrl()
+    }
+
     render() {
         return(
             <React.Fragment>
-                <Header />
+                <Header onSearch={ this.searchCard } />
                 <main id="main" className="main">
-                    <Subheader totalCards={ this.state.searchResults.length } />
+                    <Subheader clearSearch={ [this.clearSearchCard, this.state.hasSearch ] } totalCards={ this.state.hasSearch ? this.state.thisSearchResults.length : this.state.searchResults.length } />
                     <div className="container">
                         <SearchResults
-                            cards={ this.state.searchResults }
+                            cards={ this.state.hasSearch ? this.state.thisSearchResults : this.state.searchResults }
                             onSaveNewCard={ this.saveNewCard }
                             onSaveEdit={ this.saveCardEdit }
                             onDelCard={ this.delCard }

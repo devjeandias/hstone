@@ -6,3 +6,19 @@
 .main--header .title {
     text-transform: uppercase;
 }
+
+.main--header .btnClear {
+    text-transform: uppercase;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background: #a1a2a3a4;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+    color: #000;
+}
+
+.main--header .btnClear:hover {
+    box-shadow: inset 0 0 10px 5px rgba(0,0,0, 0.2);
+    outline: none;
+}
